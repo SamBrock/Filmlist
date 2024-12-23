@@ -1,5 +1,5 @@
 {
-  "name": "@filmlist/typescript-config",
+  "name": "@filmlist/tsconfig",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",

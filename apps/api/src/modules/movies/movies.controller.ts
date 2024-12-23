@@ -8,10 +8,10 @@ import { MoviesService } from './movies.service';
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 
-  @Get(':id')
-  @ApiOkResponse({ type: MovieDetailsEntity })
-  async getMovieById(@Param('id') id: number): Promise<MovieDetailsEntity> {
-    const { data } = await this.moviesService.getMovie(id);
-    return data;
-  }
+  // @Get(':id')
+  // @ApiOkResponse({ type: MovieDetailsEntity })
+  // async getMovieById(@Param('id') id: number): Promise<MovieDetailsEntity> {
+  //   // const { data } = await this.moviesService.getMovie(id);
+  //   return {data};
+  // }
 }

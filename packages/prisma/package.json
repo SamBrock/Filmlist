@@ -6,7 +6,8 @@
   "scripts": {
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "db:push": "prisma db push && prisma generate"
+    "db:push": "prisma db push && prisma generate",
+    "db:studio": "prisma studio"
   },
   "publishConfig": {
     "access": "public"

@@ -1,12 +1,11 @@
-import * as dotenv from 'dotenv';
 import createClient from 'openapi-fetch';
 
-import type { paths } from './schema-v3';
+import type { paths, components } from './tmdb-schema-v3';
 
-dotenv.config({ path: '.env' });
+export type ApiSchema = components['schemas'];
 
 export const client = createClient<paths>({
-  baseUrl: 'https://api.themoviedb.org',
+  baseUrl: 'https://www.themoviedb.org/',
   headers: {
     Authorization: `Bearer ${process.env.TMDB_API_READ_ACCESS_TOKEN}`,
   },

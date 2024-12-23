@@ -52,16 +52,16 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/movies/{id}": {
+    "/v1/{username}/logs": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["MoviesController_getMovieById"];
+        get: operations["LogsController_find"];
         put?: never;
-        post?: never;
+        post: operations["LogsController_create"];
         delete?: never;
         options?: never;
         head?: never;
@@ -72,36 +72,21 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        GenreEntity: {
+        LogEntity: {
             id: number;
-            name: string;
+            movieId: number;
+            rating: number;
+            liked: boolean;
+            userId: number;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            updatedAt: string;
         };
-        MovieDetailsEntity: {
-            adult: boolean;
-            backdrop_path: string;
-            belongs_to_collection: Record<string, never>;
-            budget: number;
-            genres: components["schemas"]["GenreEntity"][];
-            homepage: string;
-            id: number;
-            imdb_id: string;
-            original_language: string;
-            original_title: string;
-            overview: string;
-            popularity: number;
-            poster_path: string;
-            release_date: string;
-            revenue: number;
-            runtime: number;
-            status: string;
-            tagline: string;
-            title: string;
-            video: boolean;
-            vote_average: number;
-            vote_count: number;
-            production_companies: Record<string, never>;
-            production_countries: Record<string, never>;
-            spoken_languages: Record<string, never>;
+        CreateLogDto: {
+            movieId: number;
+            rating: number;
+            liked: boolean;
         };
     };
     responses: never;
@@ -163,12 +148,12 @@ export interface operations {
             };
         };
     };
-    MoviesController_getMovieById: {
+    LogsController_find: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                id: number;
+                username: string;
             };
             cookie?: never;
         };
@@ -179,8 +164,31 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["MovieDetailsEntity"];
+                    "application/json": components["schemas"]["LogEntity"][];
                 };
+            };
+        };
+    };
+    LogsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                username: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateLogDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };
