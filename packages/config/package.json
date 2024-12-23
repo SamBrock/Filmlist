@@ -1,0 +1,16 @@
+{
+  "name": "@filmlist/config",
+  "sideEffects": false,
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "files": [
+    "eslint-preset.js",
+    "prettier-preset.js"
+  ],
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "4.1.1",
+    "prettier": "^2.8.6",
+    "prettier-plugin-tailwindcss": "^0.2.5"
+  }
+}

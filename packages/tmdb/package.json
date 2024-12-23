@@ -1,0 +1,17 @@
+{
+  "name": "@filmlist/tmdb",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "generate-types:v3": "openapi-typescript https://developer.themoviedb.org/openapi/64542913e1f86100738e227f --output schema-v3.d.ts",
+    "generate-types:v4": "openapi-typescript https://developer.themoviedb.org/openapi/6453cc549c91cf004cd2a015 --output schema-v4.d.ts"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.13.3",
+    "openapi-typescript": "^7.4.4"
+  }
+}
