@@ -1,0 +1,17 @@
+{
+  "name": "@filmlist/lib",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "generate-api-types": "openapi-typescript http://localhost:3001/docs-yaml --output ./api/api-schema-v1.d.ts"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.13.3"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.4.4"
+  }
+}

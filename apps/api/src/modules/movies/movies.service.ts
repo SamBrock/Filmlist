@@ -6,7 +6,17 @@ import { client } from '@filmlist/tmdb/client';
 export class MoviesService {
   private tmdb = client;
 
-  async getLatest() {
-    return client.GET('/3/movie/latest');
+  getMovie(id: number) {
+    return this.tmdb.GET('/3/movie/{movie_id}', {
+      params: {
+        path: {
+          movie_id: id,
+        },
+      },
+    });
+  }
+
+  getLatest() {
+    return this.tmdb.GET('/3/movie/latest');
   }
 }

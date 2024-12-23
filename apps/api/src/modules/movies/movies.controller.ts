@@ -1,13 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
+import { ApiOkResponse } from '@nestjs/swagger';
 
+import { MovieDetailsEntity } from './entities/movie-details.entity';
 import { MoviesService } from './movies.service';
 
 @Controller('/v1/movies')
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 
-  @Get('latest')
-  async getLatest() {
-    return this.moviesService.getLatest();
+  @Get(':id')
+  @ApiOkResponse({ type: MovieDetailsEntity })
+  async getMovieById(@Param('id') id: number): Promise<MovieDetailsEntity> {
+    const { data } = await this.moviesService.getMovie(id);
+    return data;
   }
 }
