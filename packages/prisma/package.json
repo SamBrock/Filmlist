@@ -1,0 +1,18 @@
+{
+  "name": "@filmlist/prisma",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "db:push": "prisma db push && prisma generate"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@prisma/client": "6.1.0",
+    "prisma": "^6.1.0"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "name": "filmlist",
+  "name": "filmlist-monorepo",
   "private": true,
   "scripts": {
     "build": "turbo build",
