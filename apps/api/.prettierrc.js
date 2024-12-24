@@ -1,7 +1,7 @@
-const rootConfig = require('../../packages/config/prettier-preset');
+const preset = require('../../packages/config/prettier-preset');
 
 module.exports = {
-  ...rootConfig,
-  importOrder: ['^./instrument', ...rootConfig.importOrder],
+  ...preset,
+  importOrder: ['^./instrument', ...preset.importOrder],
   importOrderParserPlugins: ['typescript', 'decorators-legacy'],
 };

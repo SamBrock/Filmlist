@@ -1,7 +1,7 @@
 {
   "name": "@filmlist/config",
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "private": true,
   "exports": {
     "./eslint-preset": "./eslint-preset.js",
@@ -22,6 +22,7 @@
     "eslint-plugin-turbo": "^2.3.0",
     "globals": "^15.12.0",
     "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "typescript": "^5.3.3",
     "typescript-eslint": "^8.15.0"
   }

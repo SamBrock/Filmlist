@@ -1,3 +1,7 @@
+/**
+ * @see https://prettier.io/docs/en/configuration.html
+ * @type {import("prettier").Config}
+ */
 module.exports = {
   bracketSpacing: true,
   singleQuote: true,
@@ -9,12 +13,5 @@ module.exports = {
   endOfLine: 'auto',
   importOrder: ['<THIRD_PARTY_MODULES>', '^@(filmlist|)/(.*)$', '^@(lib|components)/(.*)$', '^[./]'],
   importOrderSeparation: true,
-  plugins: [
-    '@trivago/prettier-plugin-sort-imports',
-    /**
-     * **NOTE** tailwind plugin must come last!
-     * @see https://github.com/tailwindlabs/prettier-plugin-tailwindcss#compatibility-with-other-prettier-plugins
-     */
-    'prettier-plugin-tailwindcss',
-  ],
+  plugins: ['@trivago/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
 };
