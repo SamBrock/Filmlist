@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { client } from '@filmlist/lib/tmdb/client';
+import { client } from '@filmlist/tmdb';
 
 import { PrismaService } from '../prisma/prisma.service';
 
@@ -10,41 +10,33 @@ export class MoviesService {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  getMovie(id: number) {
-    return this.tmdb.GET('/3/movie/{movie_id}', {
-      params: {
-        path: {
-          movie_id: id,
-        },
+  checkMovieExists(movieId: number) {
+    return this.prisma.movie.findUnique({
+      where: {
+        id: movieId,
       },
     });
   }
 
-  getLatest() {
-    // return this.tmdb.GET('/3/movie/latest');
-  }
-
   async saveMovie(movieId: number) {
-    // const exists = await this.prisma.movie.findUnique({
-    //   where: {
-    //     id: movieId,
-    //   },
-    // });
-    // if (exists) {
-    //   return exists;
-    // }
-    // const movie = await this.tmdb.GET('/3/movie/{movie_id}', {
-    //   params: {
-    //     path: { movie_id: movieId },
-    //   },
-    // });
-    // const saved = await this.prisma.movie.create({
-    //   data: {
-    //     id: movie.data.id,
-    //     title: movie.data.title,
-    //   },
-    // });
-    // // Event to save poster and backdrop images
-    // return saved;
+    const { data } = await this.tmdb.GET('/3/movie/{movie_id}', {
+      params: {
+        path: { movie_id: movieId },
+      },
+    });
+
+    const saved = this.prisma.movie.create({
+      data: {
+        id: data.id,
+        title: data.title,
+        backdropPath: data.backdrop_path,
+        posterPath: data.poster_path,
+        releaseDate: new Date(data.release_date),
+      },
+    });
+
+    // Event to save images
+
+    return saved;
   }
 }
