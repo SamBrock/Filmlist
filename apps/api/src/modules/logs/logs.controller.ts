@@ -10,14 +10,15 @@ import { LogsService } from './logs.service';
 export class LogsController {
   constructor(private readonly logsService: LogsService) {}
 
-  @Get('/find')
+  @Get('/findUserLogs')
   @ApiOkResponse({ type: LogEntity, isArray: true })
-  find(@User() user: AuthUser): Promise<LogEntity[]> {
+  findUserLogs(@User() user: AuthUser): Promise<LogEntity[]> {
     return this.logsService.findUserLogs(user.userId);
   }
 
-  @Post('/create')
-  create(@Body() logDto: CreateLogDto, @User() user: AuthUser) {
-    return this.logsService.createLog(logDto, user.userId || 1);
+  @Post('/createLog')
+  @ApiOkResponse({ type: LogEntity })
+  createLog(@Body() logDto: CreateLogDto, @User() user: AuthUser): Promise<LogEntity> {
+    return this.logsService.createLog(logDto, 1);
   }
 }

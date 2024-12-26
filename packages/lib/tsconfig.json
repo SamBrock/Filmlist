@@ -1,4 +1,5 @@
 {
+  "extends": "@filmlist/tsconfig/base.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src"

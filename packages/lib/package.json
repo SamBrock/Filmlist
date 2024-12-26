@@ -2,14 +2,20 @@
   "name": "@filmlist/lib",
   "version": "0.0.0",
   "private": true,
+  "exports": {
+    "./api": {
+      "types": "./src/api/index.ts",
+      "default": "./src/api/index.ts"
+    }
+  },
   "scripts": {
-    "generate-types-api": "openapi-typescript http://localhost:3001/docs-yaml --output ./api/api-schema-v1.d.ts",
-    "generate-types-tmdb-v3": "openapi-typescript https://developer.themoviedb.org/openapi/64542913e1f86100738e227f --output ./tmdb/tmdb-schema-v3.d.ts"
+    "generate-types": "openapi-typescript http://localhost:3001/docs-yaml --output ./src/api/api-schema-v1.d.ts"
   },
   "dependencies": {
     "openapi-fetch": "^0.13.3"
   },
   "devDependencies": {
+    "@filmlist/tsconfig": "*",
     "openapi-typescript": "^7.4.4"
   }
 }

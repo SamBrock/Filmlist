@@ -52,16 +52,32 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/{username}/logs": {
+    "/v1/logs/findUserLogs": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["LogsController_find"];
+        get: operations["LogsController_findUserLogs"];
         put?: never;
-        post: operations["LogsController_create"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/logs/createLog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["LogsController_createLog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -148,13 +164,11 @@ export interface operations {
             };
         };
     };
-    LogsController_find: {
+    LogsController_findUserLogs: {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                username: string;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
@@ -169,13 +183,11 @@ export interface operations {
             };
         };
     };
-    LogsController_create: {
+    LogsController_createLog: {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                username: string;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody: {
@@ -184,11 +196,13 @@ export interface operations {
             };
         };
         responses: {
-            201: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["LogEntity"];
+                };
             };
         };
     };

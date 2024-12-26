@@ -1,5 +1,5 @@
 {
-  "name": "@filmlist/api",
+  "name": "@filmlist/server",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -21,29 +21,18 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@filmlist/lib": "*",
-    "@filmlist/tmdb": "*",
     "@nestjs/common": "^10.0.0",
-    "@nestjs/config": "^3.3.0",
     "@nestjs/core": "^10.0.0",
-    "@nestjs/event-emitter": "^2.1.1",
-    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^10.0.0",
-    "@nestjs/swagger": "^8.1.0",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.1",
-    "prisma": "^6.1.0",
+    "@trpc/server": "^10.45.2",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@filmlist/config": "*",
-    "@filmlist/tsconfig": "*",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
-    "@swc/cli": "^0.5.2",
-    "@swc/core": "^1.10.1",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",

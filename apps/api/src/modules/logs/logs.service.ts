@@ -20,12 +20,10 @@ export class LogsService {
   }
 
   async createLog(createLogDto: CreateLogDto, userId: number) {
-    const exists = await this.moviesService.checkMovieExists(createLogDto.movieId);
-    if (!exists) {
-      await this.moviesService.saveMovie(createLogDto.movieId);
-    }
+    // Save the movie to the db if it doesn't exist
+    await this.moviesService.findOrSaveMovie(createLogDto.movieId);
 
-    await this.prisma.log.create({
+    return this.prisma.log.create({
       data: {
         userId,
         movieId: createLogDto.movieId,

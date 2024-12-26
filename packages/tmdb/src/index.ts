@@ -1,10 +1,5 @@
-import createClient from 'openapi-fetch';
+import type { components } from './schema-v3';
 
-import type { paths } from './schema-v3';
+export { client } from './client';
 
-export const client = createClient<paths>({
-  baseUrl: 'https://www.themoviedb.org/',
-  headers: {
-    Authorization: `Bearer ${process.env.TMDB_API_READ_ACCESS_TOKEN}`,
-  },
-});
+export type TMDbSchema = components['schemas'];

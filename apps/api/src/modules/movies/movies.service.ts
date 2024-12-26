@@ -10,20 +10,23 @@ export class MoviesService {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  checkMovieExists(movieId: number) {
-    return this.prisma.movie.findUnique({
-      where: {
-        id: movieId,
-      },
+  async findOrSaveMovie(movieId: number) {
+    const exists = await this.prisma.movie.findUnique({
+      where: { id: movieId },
     });
-  }
 
-  async saveMovie(movieId: number) {
-    const { data } = await this.tmdb.GET('/3/movie/{movie_id}', {
+    if (exists) {
+      return exists;
+    }
+
+    console.log('FINDING', movieId);
+
+    const { data, response } = await this.tmdb.GET('/3/movie/{movie_id}', {
       params: {
         path: { movie_id: movieId },
       },
     });
+    console.log('found', data, response);
 
     const saved = this.prisma.movie.create({
       data: {
@@ -35,7 +38,7 @@ export class MoviesService {
       },
     });
 
-    // Event to save images
+    // Save images
 
     return saved;
   }
