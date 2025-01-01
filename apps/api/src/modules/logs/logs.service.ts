@@ -1,34 +1,29 @@
 import { Injectable } from '@nestjs/common';
 
-import { MoviesService } from '../movies/movies.service';
 import { PrismaService } from '../prisma/prisma.service';
-import { CreateLogDto } from './dto/create-log.dto';
+import { CreateLogSchema } from './schema/createLog.schema';
 
 @Injectable()
 export class LogsService {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly moviesService: MoviesService
-  ) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  findUserLogs(userId: number) {
-    return this.prisma.log.findMany({
-      where: {
-        userId,
-      },
-    });
-  }
+  // findUserLogs(schema: FindUserLogs) {
+  //   return this.prisma.log.findMany({
+  //     where: { userId: schema.userId },
+  //     include: {
+  //       movie: true,
+  //     },
+  //   });
+  // }
 
-  async createLog(createLogDto: CreateLogDto, userId: number) {
-    // Save the movie to the db if it doesn't exist
-    await this.moviesService.findOrSaveMovie(createLogDto.movieId);
-
+  createLog(schema: CreateLogSchema) {
     return this.prisma.log.create({
       data: {
-        userId,
-        movieId: createLogDto.movieId,
-        liked: createLogDto.liked,
-        rating: createLogDto.rating,
+        userId: schema.userId,
+        habitId: schema.habitId,
+        dateNum: new Date(schema.date).getTime(),
+        date: schema.date,
+        status: schema.status,
       },
     });
   }

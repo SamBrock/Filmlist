@@ -1,0 +1,11 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background: #1f1f1f;
+  --color-foreground: #2b2b2b;
+  --color-text: #f0f0f0;
+}
+
+.debug {
+  border: 1px red solid;
+}

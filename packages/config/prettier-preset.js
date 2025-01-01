@@ -11,7 +11,12 @@ module.exports = {
   printWidth: 110,
   arrowParens: 'always',
   endOfLine: 'auto',
-  importOrder: ['<THIRD_PARTY_MODULES>', '^@(filmlist|)/(.*)$', '^@(lib|components)/(.*)$', '^[./]'],
+  importOrder: [
+    '<THIRD_PARTY_MODULES>',
+    '^@(filmlist|)/(.*)$',
+    '^@(lib|components|app|actions)/(.*)$',
+    '^[./]',
+  ],
   importOrderSeparation: true,
   plugins: ['@trivago/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
 };

@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 
-import { MoviesModule } from '../movies/movies.module';
 import { PrismaModule } from '../prisma/prisma.module';
-import { LogsController } from './logs.controller';
+import { TRPCModule } from '../trpc/trpc.module';
+import { LogsRouter } from './logs.router';
 import { LogsService } from './logs.service';
 
 @Module({
-  imports: [PrismaModule, MoviesModule],
-  controllers: [LogsController],
-  providers: [LogsService],
+  imports: [PrismaModule, TRPCModule],
+  controllers: [],
+  providers: [LogsService, LogsRouter],
+  exports: [LogsRouter],
 })
 export class LogsModule {}
