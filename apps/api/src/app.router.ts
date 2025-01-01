@@ -1,8 +1,8 @@
 import { INestApplication, Injectable } from '@nestjs/common';
 import * as trpcExpress from '@trpc/server/adapters/express';
 
-import { HabitsRouter } from './modules/habits/habits.router';
 import { LogsRouter } from './modules/logs/logs.router';
+import { MoviesRouter } from './modules/movies/movies.router';
 import { TRPCService } from './modules/trpc/trpc.service';
 
 export type AppRouterType = AppRouter['appRouter'];
@@ -11,12 +11,12 @@ export type AppRouterType = AppRouter['appRouter'];
 export class AppRouter {
   constructor(
     private readonly trpc: TRPCService,
-    private readonly habitsRouter: HabitsRouter,
+    private readonly moviesRouter: MoviesRouter,
     private readonly logsRouter: LogsRouter
   ) {}
 
   appRouter = this.trpc.router({
-    habits: this.habitsRouter.router,
+    movies: this.moviesRouter.router,
     logs: this.logsRouter.router,
   });
 

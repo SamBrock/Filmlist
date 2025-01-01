@@ -10,6 +10,6 @@ async function bootstrap() {
   const trpc = app.get(AppRouter);
   trpc.applyMiddleware(app);
 
-  await app.listen(process.env.PORT || 4000);
+  await app.listen(4000);
 }
 bootstrap();

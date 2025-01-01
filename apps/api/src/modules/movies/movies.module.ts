@@ -2,13 +2,13 @@ import { Module } from '@nestjs/common';
 
 import { PrismaModule } from '../prisma/prisma.module';
 import { TRPCModule } from '../trpc/trpc.module';
-import { HabitsRouter } from './habits.router';
-import { HabitsService } from './habits.service';
+import { MoviesRouter } from './movies.router';
+import { MoviesService } from './movies.service';
 
 @Module({
   imports: [TRPCModule, PrismaModule],
   controllers: [],
-  providers: [HabitsService, HabitsRouter],
-  exports: [HabitsService, HabitsRouter],
+  providers: [MoviesService, MoviesRouter],
+  exports: [MoviesService, MoviesRouter],
 })
-export class HabitsModule {}
+export class MoviesModule {}

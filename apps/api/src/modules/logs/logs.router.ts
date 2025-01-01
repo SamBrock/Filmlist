@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 
 import { TRPCService } from '../trpc/trpc.service';
 import { LogsService } from './logs.service';
-import { createLogSchema } from './schema/createLog.schema';
+import { findUserLogsInput } from './schema/find-user-logs.schema';
+import { logUserMovieInput } from './schema/log-user-movie.schema';
 
 @Injectable()
 export class LogsRouter {
@@ -11,9 +12,12 @@ export class LogsRouter {
     private readonly logsService: LogsService
   ) {}
 
-  public router = this.trpc.router({
-    createLog: this.trpc.procedure.input(createLogSchema).mutation(({ input }) => {
-      return this.logsService.createLog(input);
-    }),
+  router = this.trpc.router({
+    findUserLogs: this.trpc.procedure
+      .input(findUserLogsInput)
+      .query(({ input }) => this.logsService.findUserLogs(input)),
+    logUserMovie: this.trpc.procedure
+      .input(logUserMovieInput)
+      .query(({ input }) => this.logsService.logUserMovie(input)),
   });
 }
