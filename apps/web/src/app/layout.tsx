@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Gantari } from 'next/font/google';
 
+import { Header } from '@/components/layout/header/Header';
 import { cn } from '@/lib/utils/cn';
 
 import './globals.css';
@@ -17,7 +18,10 @@ const fontSans = Gantari({
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={cn('bg-background text-text', fontSans.className)}>{children}</body>
+      <body className={cn('bg-background text-text', fontSans.className)}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
