@@ -1,5 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const HeaderLogo = () => {
-  return <Image src="/logo.svg" alt="logo" width="30" height="30" />;
+  return (
+    <Link href="/">
+      <Image src="/logo.svg" alt="logo" width="30" height="30" />
+    </Link>
+  );
 };

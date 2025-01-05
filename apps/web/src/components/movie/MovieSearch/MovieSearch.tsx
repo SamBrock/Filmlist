@@ -5,8 +5,10 @@ import { MovieSearchResults } from './MovieSearchResults';
 export const MovieSearch = () => {
   return (
     <MovieSearchStoreProvider>
-      <MovieSearchInput />
-      <MovieSearchResults />
+      <div className="bg-foreground border-border overflow-clip rounded-lg border">
+        <MovieSearchInput />
+        <MovieSearchResults />
+      </div>
     </MovieSearchStoreProvider>
   );
 };

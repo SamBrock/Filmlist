@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Gantari } from 'next/font/google';
+import { Gantari, Inter } from 'next/font/google';
 
 import { Header } from '@/components/layout/header/Header';
 import { cn } from '@/lib/utils/cn';
@@ -15,10 +15,15 @@ const fontSans = Gantari({
   subsets: ['latin'],
 });
 
+const fontInter = Inter({
+  weight: ['400'],
+  subsets: ['latin'],
+});
+
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={cn('bg-background text-text', fontSans.className)}>
+      <body className={cn('bg-background text-text', fontSans.className, fontInter.variable)}>
         <Header />
         {children}
       </body>

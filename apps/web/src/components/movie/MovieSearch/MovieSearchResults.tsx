@@ -12,9 +12,12 @@ export const MovieSearchResults = () => {
 
   const { data } = useSWR(['search', query], () => trpc.movies.search.query({ query }));
 
+  if (!data) {
+    return null;
+  }
   return (
-    <div className="bg-foreground mt-2 rounded-lg p-1">
-      {data && data?.map((movie) => <MovieSearchResult movie={movie} />)}
+    <div className="border-border border-t p-1">
+      {data && data?.map((movie) => <MovieSearchResult key={movie.id} movie={movie} />)}
     </div>
   );
 };

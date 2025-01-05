@@ -11,6 +11,39 @@ export class MoviesService {
 
   constructor(private readonly prisma: PrismaService) {}
 
+  async getTMDbMovie(movieId: number) {
+    const { data } = await this.tmdb.GET('/3/movie/{movie_id}', {
+      params: {
+        path: { movie_id: movieId },
+      },
+    });
+
+    if (!data) {
+      throw new NotFoundException('Movie not found');
+    }
+
+    return data;
+  }
+
+  async getTMDbMovieDirectors(movieId: number) {
+    const { data } = await this.tmdb.GET('/3/movie/{movie_id}/credits', {
+      params: {
+        path: { movie_id: movieId },
+      },
+    });
+
+    if (!data) {
+      throw new NotFoundException('Movie not found');
+    }
+
+    const directors = data.crew?.filter((person) => person.job === 'Director');
+
+    return directors?.map((director) => ({
+      id: director.id,
+      name: director.name,
+    }));
+  }
+
   async searchMovies(input: SearchMoviesInput) {
     const { data } = await this.tmdb.GET('/3/search/movie', {
       params: {
@@ -32,12 +65,29 @@ export class MoviesService {
       throw new NotFoundException('No movies found');
     }
 
-    return results.filter((movie) => {
-      if (movie.poster_path === null) return false;
-      if (movie.backdrop_path === null) return false;
-      if (movie.popularity < 2) return false;
-      return true;
-    });
+    const filteredResults = results
+      .filter((movie) => {
+        if (movie.poster_path === null) return false;
+        if (movie.backdrop_path === null) return false;
+        if (movie.popularity < 2) return false;
+        return true;
+      })
+      .slice(0, 5);
+
+    const withDirectors = await Promise.all(
+      filteredResults.map(async (movie) => {
+        const directors = await this.getTMDbMovieDirectors(movie.id);
+        return {
+          id: movie.id,
+          title: movie.title as string,
+          posterPath: movie.poster_path as string,
+          releaseDate: movie.release_date as string,
+          directors,
+        };
+      })
+    );
+
+    return withDirectors;
   }
 
   async saveMovie(movieId: number) {
