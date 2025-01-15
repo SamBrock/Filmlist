@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { cn } from '@/lib/utils/cn';
+import { cn } from '@filmlist/lib/utils/cn';
 
 export const HeaderLinks = ({ className, ...props }: React.ComponentProps<'ul'>) => {
   const pathname = usePathname();

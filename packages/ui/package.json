@@ -1,0 +1,24 @@
+{
+  "name": "@filmlist/ui",
+  "private": true,
+  "sideEffects": false,
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "exports": {
+    "./layout": "./layout/index.tsx",
+    "./styles/global": "./styles/global.css"
+  },
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {
+    "@filmlist/lib": "*",
+    "class-variance-authority": "^0.7.1",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.1",
+    "@types/react-dom": "18.3.0"
+  }
+}

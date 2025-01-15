@@ -1,10 +1,9 @@
+import { GlobalStoreProvider } from '@/providers/GlobalStoreProvider';
 import type { Metadata } from 'next';
 import { Gantari, Inter } from 'next/font/google';
 
-import { Header } from '@/components/layout/header/Header';
-import { MovieSearch } from '@/components/movie/MovieSearch/MovieSearch';
-import { cn } from '@/lib/utils/cn';
-import { GlobalStoreProvider } from '@/providers/GlobalStoreProvider';
+import { cn } from '@filmlist/lib/utils/cn';
+import { Header } from '@filmlist/ui/layout';
 
 import './globals.css';
 
@@ -26,12 +25,10 @@ const fontInter = Inter({
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={cn('bg-background text-text', fontSans.className, fontInter.variable)}>
+      <body className={cn('text-text bg-background', fontSans.className, fontInter.variable)}>
         <GlobalStoreProvider>
           <Header />
           {children}
-
-          <MovieSearch />
         </GlobalStoreProvider>
       </body>
     </html>

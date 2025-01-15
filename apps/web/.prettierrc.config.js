@@ -14,7 +14,7 @@ module.exports = {
   importOrder: [
     '<THIRD_PARTY_MODULES>',
     '^@(filmlist)/(.*)$',
-    '^@(lib|components|app|actions)/(.*)$',
+    '^@(lib|components|providers|app|actions)/(.*)$',
     '^[./]',
   ],
   importOrderSeparation: true,

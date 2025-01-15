@@ -1,9 +1,9 @@
 'use client';
 
 import { Icon } from '@/components/common/Icon';
-import { Kbd } from '@/components/common/Kbd';
-import { cn } from '@/lib/utils/cn';
 import { useGlobalStore } from '@/providers/GlobalStoreProvider';
+
+import { cn } from '../../../lib/utils/cn';
 
 export const HeaderSearch = ({ className, ...props }: React.ComponentProps<'div'>) => {
   const openSearchModal = useGlobalStore((s) => s.openSearchModal);

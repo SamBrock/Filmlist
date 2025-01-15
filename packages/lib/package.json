@@ -1,0 +1,20 @@
+{
+  "name": "@filmlist/lib",
+  "private": true,
+  "sideEffects": false,
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "exports": {
+    "./constants": "./constants.ts",
+    "./utils/cn": "./utils/cn.ts",
+    "./trpc": "./trpc/index.ts"
+  },
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {
+    "@trpc/client": "^10.45.2",
+    "@trpc/server": "^10.45.2",
+    "class-variance-authority": "^0.7.1"
+  },
+  "devDependencies": {}
+}
