@@ -3,9 +3,9 @@
 @theme {
   --font-inter: 'Inter', sans-serif;
 
-  --color-background: #0d0d0d;
-  --color-foreground: #161616;
-  --color-border: #252525;
+  --color-background: #141414;
+  --color-foreground: #181818;
+  --color-border: #282828;
   --color-text: #eeeeee;
   --color-secondary: #7c7c7c;
 
@@ -15,12 +15,9 @@
   --container-xl: 1024px;
   --container-2xl: 1024px;
 
-  /* None	width: 100%;
-  sm (640px)	max-width: 640px;
-  md (768px)	max-width: 768px;
-  lg (1024px)	max-width: 1024px;
-  xl (1280px)	max-width: 1280px;
-  2xl (1536px)	max-width: 1536px; */
+  --height-input-sm: 2rem;
+  --height-input-md: 2.5rem;
+  --height-input-lg: 3rem;
 }
 
 .debug {
