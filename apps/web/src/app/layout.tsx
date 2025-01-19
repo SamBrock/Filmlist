@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Gantari, Inter } from 'next/font/google';
 
-import { Sidebar } from '@/components/layout/sidebar/Sidebar';
+import { Header } from '@/components/layout';
 import { cn } from '@/lib/utils/cn';
 import { GlobalStoreProvider } from '@/providers/GlobalStoreProvider';
 
@@ -27,7 +27,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
     <html lang="en">
       <body className={cn('text-text bg-background', fontSans.className, fontInter.variable)}>
         <GlobalStoreProvider>
-          <Sidebar className="" />
+          <Header />
           {children}
         </GlobalStoreProvider>
       </body>
