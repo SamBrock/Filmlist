@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Gantari, Inter } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
 import { Header } from '@/components/layout';
 import { cn } from '@/lib/utils/cn';
@@ -11,11 +11,6 @@ export const metadata: Metadata = {
   title: 'filmlist',
 };
 
-const fontSans = Gantari({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-});
-
 const fontInter = Inter({
   weight: ['400'],
   subsets: ['latin'],
@@ -25,7 +20,7 @@ const fontInter = Inter({
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={cn('text-text bg-background', fontSans.className, fontInter.variable)}>
+      <body className={cn('text-text bg-background', fontInter.variable)}>
         <GlobalStoreProvider>
           <Header />
           {children}

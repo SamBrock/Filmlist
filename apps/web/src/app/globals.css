@@ -16,9 +16,11 @@
   --container-xl: 1024px;
   --container-2xl: 1024px;
 
+  --height-input-xs: 1.6rem;
   --height-input-sm: 2rem;
   --height-input-md: 2.5rem;
   --height-input-lg: 3rem;
+  --height-icon: 1.2rem;
 }
 
 .debug {

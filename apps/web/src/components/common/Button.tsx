@@ -11,9 +11,11 @@ const buttonVariants = cva('inline-flex font-medium items-center justify-center 
       secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
       ghost: 'hover:bg-accent hover:text-accent-foreground',
       link: 'text-primary underline-offset-4 hover:underline',
+      outline: 'border border-border text-secondary hover:bg-text/10',
     },
     size: {
       default: 'h-input-md rounded-md px-3 text-sm',
+      xs: 'h-input-xs rounded-md px-2 text-xs',
       sm: 'h-input-sm rounded-md px-3 text-sm',
       lg: 'h-input-lg rounded-md px-8',
     },

@@ -1,7 +1,8 @@
-import { LucideProps, Search } from 'lucide-react';
+import { LucideProps, Plus, Search } from 'lucide-react';
 
 const ICONS = {
   search: Search,
+  plus: Plus,
 } as const;
 
 type IconProps = LucideProps & {
