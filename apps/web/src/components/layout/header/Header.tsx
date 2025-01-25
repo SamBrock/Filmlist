@@ -1,11 +1,14 @@
+import Link from 'next/link';
+
 import { cn } from '@/lib/utils/cn';
 
+import { HeaderLink } from './HeaderLink';
 import { HeaderLogo } from './HeaderLogo';
 import { HeaderMovieSearch } from './HeaderMovieSearch';
 
 export const Header = ({ className, ...props }: React.ComponentProps<'header'>) => {
   return (
-    <header className={cn('flex w-full items-center px-8 py-4', className)} {...props}>
+    <header className={cn('bg-background sticky top-0 flex w-full items-center', className)} {...props}>
       <HeaderLogo />
       <HeaderMovieSearch />
     </header>

@@ -1,14 +1,11 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-inter: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans,
-    Ubuntu, Cantarell, Helvetica Neue, sans-serif;
-
-  --color-background: #141414;
-  --color-foreground: #181818;
+  --color-background: #0e1216;
+  --color-foreground: #14181b;
   --color-border: #282828;
   --color-text: #eeeeee;
-  --color-secondary: #7c7c7c;
+  --color-secondary: #6c6d71;
 
   --container-sm: 640px;
   --container-md: 768px;

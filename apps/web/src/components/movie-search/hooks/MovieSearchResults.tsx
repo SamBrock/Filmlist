@@ -14,13 +14,7 @@ export const MovieSearchResults = ({ className, ...props }: React.ComponentProps
     return null;
   }
   return (
-    <div
-      className={cn(
-        'bg-foreground border-border absolute mt-2 w-full rounded-lg border p-1 shadow-md',
-        className
-      )}
-      {...props}
-    >
+    <div className={cn('absolute mt-2 w-full rounded-lg bg-neutral-950 p-1 shadow-lg', className)} {...props}>
       {response.data?.map((movie) => <MovieSearchResult key={movie.id} movie={movie} />)}
     </div>
   );
