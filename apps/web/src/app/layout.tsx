@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Albert_Sans, Figtree, Funnel_Display, Inter, M_PLUS_1 } from 'next/font/google';
+import { Albert_Sans, Metal } from 'next/font/google';
 
 import { Header } from '@/components/layout/header/Header';
 import { SideNav } from '@/components/sidenav/SideNav';
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const fontSans = Albert_Sans({
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
 });
 

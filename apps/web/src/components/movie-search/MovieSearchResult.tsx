@@ -2,7 +2,7 @@ import { trpc } from '@/lib/trpc';
 import { cn } from '@/lib/utils/cn';
 
 import { Button } from '../common/Button';
-import { MoviePoster } from '../movie/MoviePoster';
+import { MoviePoster } from '../movie-list/MoviePoster';
 
 type MovieSearchResultProps = React.ComponentProps<'div'> & {
   movie: Awaited<ReturnType<typeof trpc.movies.search.query>>[number];
