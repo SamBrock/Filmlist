@@ -1,4 +1,4 @@
-import { posterSrc } from '@/lib/images';
+import { posterSrc } from '@/lib/utils/imageSrc';
 
 type MoviePosterProps = React.ComponentProps<'img'> & {
   posterPath: string;

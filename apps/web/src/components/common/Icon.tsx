@@ -10,6 +10,7 @@ import {
   Pin,
   Plus,
   Search,
+  Star,
 } from 'lucide-react';
 
 const ICONS = {
@@ -23,6 +24,7 @@ const ICONS = {
   listCheck: ListCheck,
   heart: Heart,
   pin: Pin,
+  star: Star,
 } as const;
 
 type IconProps = LucideProps & {

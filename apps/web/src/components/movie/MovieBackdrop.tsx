@@ -1,4 +1,4 @@
-import { backdropSrc } from '@/lib/images';
+import { backdropSrc } from '@/lib/utils/imageSrc';
 
 type MovieBackdropImageProps = React.ComponentProps<'img'> & {
   backdropPath: string;

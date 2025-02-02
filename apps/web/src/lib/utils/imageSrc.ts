@@ -1,4 +1,4 @@
-import { TMDB_IMAGE_BASE_URL } from './constants';
+import { TMDB_IMAGE_BASE_URL } from '../constants';
 
 type PosterImageProvider = 'filmlist' | 'tmdb';
 
@@ -26,7 +26,7 @@ export const posterSrc = <T extends PosterImageProvider>(
   }
 };
 
-type BackdropImageProvider = 'tmdb'; // Only using TMDB backdrop images for noe
+type BackdropImageProvider = 'tmdb'; // Only using TMDB backdrop images for now
 
 type BackdropSize = {
   provider: 'tmdb';
