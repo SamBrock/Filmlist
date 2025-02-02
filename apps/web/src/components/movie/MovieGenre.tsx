@@ -16,7 +16,7 @@ export const MovieGenre = ({ genre, colors, className, ...props }: MovieGenresPr
   return (
     <div
       className={cn(
-        'inline-flex h-6 items-center justify-center rounded-sm px-2 py-1 text-sm leading-0 font-medium text-white/50'
+        'text-text/70 inline-flex h-6 items-center justify-center rounded-sm px-2 py-1 text-sm leading-0 font-medium'
       )}
       style={{
         background: colors.hslSecondary,

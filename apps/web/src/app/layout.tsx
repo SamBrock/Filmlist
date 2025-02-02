@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Albert_Sans, Metal } from 'next/font/google';
+import { Albert_Sans } from 'next/font/google';
 
 import { Header } from '@/components/layout/header/Header';
 import { SideNav } from '@/components/sidenav/SideNav';
@@ -20,6 +20,9 @@ const fontSans = Albert_Sans({
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body className={cn('text-text bg-background', fontSans.className)}>
         <GlobalStoreProvider>
           <Header className="h-16 px-6" />

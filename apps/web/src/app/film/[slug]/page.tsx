@@ -26,7 +26,6 @@ export default async function MoviePage(props: Props) {
   }
 
   const movie = await trpc.movies.movie.query({ movieId });
-  console.log(movie.genres);
 
   const moviePosterColors = await generateMoviePosterColors(movie.posterPath);
 
@@ -39,43 +38,44 @@ export default async function MoviePage(props: Props) {
 
         <div className="from-foreground absolute bottom-0 left-0 h-1/2 w-full bg-linear-to-t to-transparent" />
 
-        <div className="absolute bottom-0 w-full">
-          <div className="flex gap-12 px-8 pb-8">
-            <div className="w-[15vw] self-end">
-              <MoviePoster className="rounded-lg drop-shadow-xl" posterPath={movie.posterPath} />
+        <div className="absolute bottom-0 grid w-full grid-cols-[minmax(230,1fr)_5fr] gap-8 px-8 pb-8">
+          <div className="self-end">
+            <MoviePoster className="rounded-lg object-cover drop-shadow-xl" posterPath={movie.posterPath} />
+          </div>
+
+          <div className="flex w-full flex-col self-end">
+            <div className="mb-4 flex w-full flex-wrap items-baseline gap-x-6 gap-y-2">
+              <MovieTitle title={movie.title} className="" />
+
+              <div className="flex items-center gap-1">
+                <span className="text-text/80 font-medium">{new Date(movie.releaseDate).getFullYear()}</span>
+                <span className="text-text/60 ml-4">Directed by</span>
+                <span className="text-text/80 ml-0.5 font-medium">{movie.directors.join(', ')}</span>
+              </div>
             </div>
 
-            <div className="mb-0 flex w-full flex-col self-end">
-              <div className="mb-2 flex w-full items-baseline gap-4">
-                <MovieTitle title={movie.title} className="" />
-                <div className="leading-0 text-white/70">{new Date(movie.releaseDate).getFullYear()}</div>
-
-                <div className="leading-0">
-                  <span className="text-white/40">Directed by</span>
-                  <span className="ml-2 text-white/70">{movie.directors.join(', ')}</span>
-                </div>
-              </div>
-
-              <div className="mt-4 flex w-full items-center rounded-md border border-white/10 px-4 py-2">
-                <MovieStarsInput initialRating={0} />
-              </div>
+            <div className="border-text/20 flex w-full items-center rounded-md border px-4 py-2">
+              <MovieStarsInput initialRating={0} />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mb-12 ml-[calc(15vw+20px)] flex max-w-lg flex-col gap-8">
-        <div className="flex items-center gap-2">
-          {movie.genres.map((genre, index) => (
-            <MovieGenre key={index} genre={genre} colors={moviePosterColors} />
-          ))}
+      <div className="sm:debug grid w-full grid-cols-[minmax(230,1fr)_5fr] gap-8 px-8 py-4">
+        <div className="border-border h-[400px] rounded-lg border"></div>
+        <div className="mb-12 flex w-full flex-col gap-8">
+          <div className="flex w-full items-center gap-2">
+            {movie.genres.map((genre, index) => (
+              <MovieGenre key={index} genre={genre} colors={moviePosterColors} />
+            ))}
 
-          <div className="text-white/20">•</div>
+            <div className="text-white/20">•</div>
 
-          <div className="text-sm font-medium text-white/60">{runtimeMinutesToHours(movie.runtime)}</div>
+            <div className="text-sm font-medium text-white/60">{runtimeMinutesToHours(movie.runtime)}</div>
+          </div>
+
+          <MovieOverview overview={movie.overview} className="w-full whitespace-pre-wrap lg:w-[50vw]" />
         </div>
-
-        <MovieOverview overview={movie.overview} />
       </div>
     </MovieProvider>
   );
