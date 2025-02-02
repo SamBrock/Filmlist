@@ -1,11 +1,14 @@
 import { notFound } from 'next/navigation';
 
 import { MovieBackdropImage } from '@/components/movie/MovieBackdrop';
+import { MovieGenre } from '@/components/movie/MovieGenre';
+import { MovieOverview } from '@/components/movie/MovieOverview';
 import { MoviePoster } from '@/components/movie/MoviePoster';
 import { MovieStarsInput } from '@/components/movie/MovieStarsInput';
 import { MovieTitle } from '@/components/movie/MovieTitle';
 import { trpc } from '@/lib/trpc';
 import { generateMoviePosterColors } from '@/lib/utils/imageColor';
+import { runtimeMinutesToHours } from '@/lib/utils/runtime';
 import { MovieProvider } from '@/providers/MovieProvider';
 
 type Props = {
@@ -23,6 +26,7 @@ export default async function MoviePage(props: Props) {
   }
 
   const movie = await trpc.movies.movie.query({ movieId });
+  console.log(movie.genres);
 
   const moviePosterColors = await generateMoviePosterColors(movie.posterPath);
 
@@ -60,23 +64,18 @@ export default async function MoviePage(props: Props) {
         </div>
       </div>
 
-      <div
-        className="mb-12 h-[20vh] px-8 pt-4"
-        style={
-          {
-            // background: `linear-gradient(to bottom, rgb(${colorPalette.Vibrant?.rgb.join(' ')}/ 10%), rgb(${colorPalette.Vibrant?.rgb.join(' ')}/ 8%) 0%, transparent)`,
-          }
-        }
-      >
-        {/* <div className="mt-4 flex items-center gap-1 rounded-md border border-white/10 px-8 py-4">
-          <Star
-            className="size-8"
-            style={{
-              fill: `rgb(${colorPalette.Vibrant?.rgb.join(' ')})`,
-              stroke: `rgb(${colorPalette.Vibrant?.rgb.join(' ')})`,
-            }}
-          />
-        </div> */}
+      <div className="mb-12 ml-[calc(15vw+20px)] flex max-w-lg flex-col gap-8">
+        <div className="flex items-center gap-2">
+          {movie.genres.map((genre, index) => (
+            <MovieGenre key={index} genre={genre} colors={moviePosterColors} />
+          ))}
+
+          <div className="text-white/20">•</div>
+
+          <div className="text-sm font-medium text-white/60">{runtimeMinutesToHours(movie.runtime)}</div>
+        </div>
+
+        <MovieOverview overview={movie.overview} />
       </div>
     </MovieProvider>
   );

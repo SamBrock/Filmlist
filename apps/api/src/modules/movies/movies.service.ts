@@ -46,6 +46,7 @@ export class MoviesService {
       directors: credits.crew
         ? credits.crew.filter((person) => person.job === 'Director').map((person) => person.name as string)
         : [],
+      genres: data.genres ? data.genres?.map((genre) => genre.name as string) : [],
     };
   }
 
