@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
 import { MovieBackdropImage } from '@/components/movie/MovieBackdrop';
 import { MovieGenre } from '@/components/movie/MovieGenre';
@@ -6,6 +7,7 @@ import { MovieOverview } from '@/components/movie/MovieOverview';
 import { MoviePoster } from '@/components/movie/MoviePoster';
 import { MovieStarsInput } from '@/components/movie/MovieStarsInput';
 import { MovieTitle } from '@/components/movie/MovieTitle';
+import { MovieWhereToWatch } from '@/components/movie/MovieWhereToWatch/MovieWhereToWatch';
 import { trpc } from '@/lib/trpc';
 import { generateMoviePosterColors } from '@/lib/utils/imageColor';
 import { runtimeMinutesToHours } from '@/lib/utils/runtime';
@@ -62,16 +64,20 @@ export default async function MoviePage(props: Props) {
       </div>
 
       <div className="sm:debug grid w-full grid-cols-[minmax(230,1fr)_5fr] gap-8 px-8 py-4">
-        <div className="border-border h-[400px] rounded-lg border"></div>
+        <div className="border-border h-[400px] rounded-lg border">
+          <Suspense fallback={null}>
+            <MovieWhereToWatch movieId={movieId} />
+          </Suspense>
+        </div>
         <div className="mb-12 flex w-full flex-col gap-8">
           <div className="flex w-full items-center gap-2">
             {movie.genres.map((genre, index) => (
               <MovieGenre key={index} genre={genre} colors={moviePosterColors} />
             ))}
 
-            <div className="text-white/20">•</div>
+            <div className="text-white/20 select-none">•</div>
 
-            <div className="text-sm font-medium text-white/60">{runtimeMinutesToHours(movie.runtime)}</div>
+            <div className="text-sm font-medium text-white/60">{movie.runtime} mins</div>
           </div>
 
           <MovieOverview overview={movie.overview} className="w-full whitespace-pre-wrap lg:w-[50vw]" />

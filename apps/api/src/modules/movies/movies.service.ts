@@ -3,6 +3,11 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { client, TMDBOperations } from '@filmlist/tmdb';
 
 import { PrismaService } from '../prisma/prisma.service';
+import {
+  GetMovieWhereToWatchInput,
+  GetMovieWhereToWatchOutput,
+  TMDbWatchProvider,
+} from './schema/get-movie-watch-providers.schema';
 import { GetMovieInput, GetMovieOutput } from './schema/get-movie.schema';
 import { SearchMoviesInput } from './schema/search-movies.schema';
 
@@ -48,6 +53,83 @@ export class MoviesService {
         : [],
       genres: data.genres ? data.genres?.map((genre) => genre.name as string) : [],
     };
+  }
+
+  async getMovieWatchProviders({
+    movieId,
+    countryCode,
+  }: GetMovieWhereToWatchInput): Promise<GetMovieWhereToWatchOutput> {
+    const { data } = await this.tmdb.GET('/3/movie/{movie_id}/watch/providers', {
+      params: {
+        path: { movie_id: movieId },
+      },
+    });
+
+    if (!data) {
+      throw new NotFoundException('Movie not found');
+    }
+
+    const providers = data.results?.[countryCode as keyof typeof data.results];
+    const groupedProviders: Map<string, GetMovieWhereToWatchOutput['providers'][number]> = new Map();
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const flatrate = providers?.flatrate as TMDbWatchProvider[];
+    if (flatrate) {
+      flatrate.forEach((provider) => {
+        if (!provider.provider_name) return;
+        const existing = groupedProviders.get(provider.provider_name);
+        if (existing) {
+          existing.options.push({ type: 'flatrate' });
+        } else {
+          groupedProviders.set(provider.provider_id.toString(), {
+            id: provider.provider_id.toString(),
+            name: provider.provider_name as string,
+            options: [{ type: 'flatrate' }],
+          });
+        }
+      });
+    }
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const buy = providers?.flatrate as TMDbWatchProvider[];
+    if (buy) {
+      buy.forEach((provider) => {
+        if (!provider.provider_name) return;
+        const existing = groupedProviders.get(provider.provider_name);
+        if (existing) {
+          existing.options.push({ type: 'buy' });
+        } else {
+          groupedProviders.set(provider.provider_id.toString(), {
+            id: provider.provider_id.toString(),
+            name: provider.provider_name as string,
+            options: [{ type: 'buy' }],
+          });
+        }
+      });
+    }
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const rent = providers?.flatrate as TMDbWatchProvider[];
+    if (rent) {
+      rent.forEach((provider) => {
+        if (!provider.provider_name) return;
+        const existing = groupedProviders.get(provider.provider_name);
+        if (existing) {
+          existing.options.push({ type: 'rent' });
+        } else {
+          groupedProviders.set(provider.provider_id.toString(), {
+            id: provider.provider_id.toString(),
+            name: provider.provider_name as string,
+            options: [{ type: 'rent' }],
+          });
+        }
+      });
+    }
+
+    return { providers: [...groupedProviders.values()] };
   }
 
   async searchMovies(input: SearchMoviesInput) {
