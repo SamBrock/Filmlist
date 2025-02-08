@@ -1,13 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
-import { client, TMDBOperations } from '@filmlist/tmdb';
+import { client, TMDBOperations, TMDbWatchProvider } from '@filmlist/tmdb';
 
 import { PrismaService } from '../prisma/prisma.service';
 import {
-  GetMovieWhereToWatchInput,
-  GetMovieWhereToWatchOutput,
-  TMDbWatchProvider,
-} from './schema/get-movie-watch-providers.schema';
+  GetMovieStreamOptionsInput,
+  GetMovieStreamOptionsOutput,
+} from './schema/get-movie-streaming-options.schema';
 import { GetMovieInput, GetMovieOutput } from './schema/get-movie.schema';
 import { SearchMoviesInput } from './schema/search-movies.schema';
 
@@ -48,6 +47,8 @@ export class MoviesService {
       overview: data.overview as string,
       runtime: data.runtime as number,
       tagline: data.tagline as string,
+      voteAverage: data.vote_average as number,
+      voteCount: data.vote_count as number,
       directors: credits.crew
         ? credits.crew.filter((person) => person.job === 'Director').map((person) => person.name as string)
         : [],
@@ -55,10 +56,10 @@ export class MoviesService {
     };
   }
 
-  async getMovieWatchProviders({
+  async getMovieStreamingOptions({
     movieId,
     countryCode,
-  }: GetMovieWhereToWatchInput): Promise<GetMovieWhereToWatchOutput> {
+  }: GetMovieStreamOptionsInput): Promise<GetMovieStreamOptionsOutput> {
     const { data } = await this.tmdb.GET('/3/movie/{movie_id}/watch/providers', {
       params: {
         path: { movie_id: movieId },
@@ -70,66 +71,19 @@ export class MoviesService {
     }
 
     const providers = data.results?.[countryCode as keyof typeof data.results];
-    const groupedProviders: Map<string, GetMovieWhereToWatchOutput['providers'][number]> = new Map();
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     const flatrate = providers?.flatrate as TMDbWatchProvider[];
-    if (flatrate) {
-      flatrate.forEach((provider) => {
-        if (!provider.provider_name) return;
-        const existing = groupedProviders.get(provider.provider_name);
-        if (existing) {
-          existing.options.push({ type: 'flatrate' });
-        } else {
-          groupedProviders.set(provider.provider_id.toString(), {
-            id: provider.provider_id.toString(),
-            name: provider.provider_name as string,
-            options: [{ type: 'flatrate' }],
-          });
-        }
-      });
+
+    if (!flatrate) {
+      return [];
     }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    const buy = providers?.flatrate as TMDbWatchProvider[];
-    if (buy) {
-      buy.forEach((provider) => {
-        if (!provider.provider_name) return;
-        const existing = groupedProviders.get(provider.provider_name);
-        if (existing) {
-          existing.options.push({ type: 'buy' });
-        } else {
-          groupedProviders.set(provider.provider_id.toString(), {
-            id: provider.provider_id.toString(),
-            name: provider.provider_name as string,
-            options: [{ type: 'buy' }],
-          });
-        }
-      });
-    }
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    const rent = providers?.flatrate as TMDbWatchProvider[];
-    if (rent) {
-      rent.forEach((provider) => {
-        if (!provider.provider_name) return;
-        const existing = groupedProviders.get(provider.provider_name);
-        if (existing) {
-          existing.options.push({ type: 'rent' });
-        } else {
-          groupedProviders.set(provider.provider_id.toString(), {
-            id: provider.provider_id.toString(),
-            name: provider.provider_name as string,
-            options: [{ type: 'rent' }],
-          });
-        }
-      });
-    }
-
-    return { providers: [...groupedProviders.values()] };
+    return flatrate.map((provider) => ({
+      id: provider.provider_id.toString(),
+      name: provider.provider_name as string,
+    }));
   }
 
   async searchMovies(input: SearchMoviesInput) {

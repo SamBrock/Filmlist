@@ -18,6 +18,8 @@ export const getMovieOutput = z.object({
   tagline: z.string(),
   directors: z.array(z.string()),
   genres: z.array(z.string()),
+  voteAverage: z.number(),
+  voteCount: z.number(),
   // voteAverage: z.number().optional(),
   // voteCount: z.number().optional(),
   // budget: z.number().optional(),

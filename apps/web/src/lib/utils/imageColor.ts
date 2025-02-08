@@ -16,7 +16,7 @@ export const generateMoviePosterColors = async (posterPath: string) => {
 
   return {
     hslPrimary: `hsl(${h} ${s}% ${l}%)`,
-    hslSecondary: `hsl(${h} ${s * 0.1}% ${l * 0.5}%)`,
+    hslSecondary: `hsl(${h} ${s * 0.1}% ${l * 0.6}%)`,
     _hsl: [h, s, l],
   };
 };

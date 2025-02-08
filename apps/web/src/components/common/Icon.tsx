@@ -1,4 +1,5 @@
 import {
+  ArrowUpRight,
   Check,
   Eye,
   Heart,
@@ -25,6 +26,7 @@ const ICONS = {
   heart: Heart,
   pin: Pin,
   star: Star,
+  launch: ArrowUpRight,
 } as const;
 
 type IconProps = LucideProps & {

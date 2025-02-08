@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { TRPCService } from '../trpc/trpc.service';
 import { MoviesService } from './movies.service';
-import { getMovieWhereToWatchInput } from './schema/get-movie-watch-providers.schema';
+import { getMovieStreamOptionsInput } from './schema/get-movie-streaming-options.schema';
 import { getMovieInput } from './schema/get-movie.schema';
 import { searchMoviesInput } from './schema/search-movies.schema';
 
@@ -18,8 +18,8 @@ export class MoviesRouter {
       return await this.moviesService.getMovie(input);
     }),
 
-    watchProviders: this.trpc.procedure.input(getMovieWhereToWatchInput).query(async ({ input }) => {
-      return await this.moviesService.getMovieWatchProviders(input);
+    streamingOptions: this.trpc.procedure.input(getMovieStreamOptionsInput).query(async ({ input }) => {
+      return await this.moviesService.getMovieStreamingOptions(input);
     }),
 
     search: this.trpc.procedure.input(searchMoviesInput).query(async ({ input }) => {

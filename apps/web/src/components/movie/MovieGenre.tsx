@@ -16,11 +16,8 @@ export const MovieGenre = ({ genre, colors, className, ...props }: MovieGenresPr
   return (
     <div
       className={cn(
-        'text-text/70 inline-flex h-6 items-center justify-center rounded-sm px-2 py-1 text-sm leading-0 font-medium'
+        'text-text/70 bg-text/5 inline-flex h-6 items-center justify-center rounded-sm px-2 py-1 text-sm leading-0 font-medium'
       )}
-      style={{
-        background: colors.hslSecondary,
-      }}
       {...props}
     >
       {OVERRIDES[genre] || genre}

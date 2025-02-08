@@ -14,7 +14,7 @@ type MovieStarsInputProps = {
   initialRating: number;
 };
 
-export const MovieStarsInput = ({ initialRating }: MovieStarsInputProps) => {
+export const StarInput = ({ initialRating }: MovieStarsInputProps) => {
   const [rating, setRating] = useState(initialRating);
 
   const { colors } = useMovieContext();
@@ -60,5 +60,5 @@ export const MovieStarsInput = ({ initialRating }: MovieStarsInputProps) => {
 };
 
 const Star = ({ className, ...props }: LucideProps) => {
-  return <Icon className={cn('size-[2rem] stroke-0', className)} {...props} name="star" />;
+  return <Icon className={cn('size-[2.2rem] stroke-0', className)} {...props} name="star" />;
 };
