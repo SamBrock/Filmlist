@@ -5,7 +5,6 @@ import { useState } from 'react';
 
 import { Icon } from '@/components/common/Icon';
 import { cn } from '@/lib/utils/cn';
-import { useMovieContext } from '@/providers/MovieProvider';
 
 const MAX_RATING = 5;
 // const STAR_SIZE = 36; // tailwind size-9
@@ -16,8 +15,6 @@ type MovieStarsInputProps = {
 
 export const StarInput = ({ initialRating }: MovieStarsInputProps) => {
   const [rating, setRating] = useState(initialRating);
-
-  const { colors } = useMovieContext();
 
   return (
     <div
@@ -31,12 +28,7 @@ export const StarInput = ({ initialRating }: MovieStarsInputProps) => {
     >
       <div className="flex items-center">
         {[...Array(MAX_RATING).keys()].map((i) => (
-          <Star
-            key={i}
-            style={{
-              fill: colors.hslSecondary,
-            }}
-          />
+          <Star key={i} className="fill-white/20" />
         ))}
       </div>
 
@@ -47,12 +39,7 @@ export const StarInput = ({ initialRating }: MovieStarsInputProps) => {
         }}
       >
         {[...Array(MAX_RATING).keys()].map((i) => (
-          <Star
-            key={i}
-            style={{
-              fill: colors.hslPrimary,
-            }}
-          />
+          <Star key={i} className="fill-theme-green" />
         ))}
       </div>
     </div>

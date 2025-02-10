@@ -9,9 +9,9 @@ const buttonVariants = cva('inline-flex font-medium items-center justify-center 
     variant: {
       default: 'bg-text text-foreground',
       secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-      ghost: 'hover:bg-accent hover:text-accent-foreground',
+      ghost: 'bg-foreground hover:bg-accent hover:text-accent-foreground',
       link: 'text-primary underline-offset-4 hover:underline',
-      outline: 'border border-border text-secondary hover:bg-text/10',
+      outline: 'border border-white/10 text-white/50 hover:bg-text/10',
     },
     size: {
       default: 'h-input-md rounded-md px-3 text-sm',
