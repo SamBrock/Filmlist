@@ -15,6 +15,7 @@
     "@radix-ui/react-slot": "^1.1.1",
     "@trpc/client": "^10.45.2",
     "class-variance-authority": "^0.7.1",
+    "hono": "^4.7.0",
     "immer": "^10.1.1",
     "lucide-react": "^0.469.0",
     "next": "^15.1.0",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@filmlist/api": "*",
     "@filmlist/config": "*",
+    "@filmlist/hono": "*",
     "@filmlist/tsconfig": "*",
     "@tailwindcss/postcss": "^4.0.0-beta.8",
     "@trivago/prettier-plugin-sort-imports": "^5.2.1",
