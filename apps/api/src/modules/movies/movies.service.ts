@@ -40,6 +40,7 @@ export class MoviesService {
     ).credits;
 
     return {
+      movieId: data.id as number,
       title: data.title as string,
       posterPath: data.poster_path as string,
       releaseDate: data.release_date as string,

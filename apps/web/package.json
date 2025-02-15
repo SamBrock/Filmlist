@@ -15,6 +15,8 @@
     "@radix-ui/react-slot": "^1.1.1",
     "@trpc/client": "^10.45.2",
     "class-variance-authority": "^0.7.1",
+    "dexie": "^4.0.11",
+    "dexie-react-hooks": "^1.1.7",
     "hono": "^4.7.0",
     "immer": "^10.1.1",
     "lucide-react": "^0.469.0",

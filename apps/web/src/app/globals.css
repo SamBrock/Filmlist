@@ -1,29 +1,35 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-background: oklch(19.13% 0 0);
+  --color-bg-default: oklch(19.13% 0 0);
+  --color-bg-subtle: oklch(20.9% 0 0);
+  --color-bg-muted: oklch(24.68% 0 0);
+
+  --color-text-default: oklch(94% 0 0);
+  --color-text-subtle: oklch(84% 0 0);
+  --color-text-muted: oklch(74% 0 0);
+
+  /* --color-background: oklch(19.13% 0 0);
   --color-foreground: oklch(20.9% 0 0);
 
   --color-text: oklch(94% 0 0);
   --color-text-secondary: oklch(70% 0 0);
   --color-border: oklch(27.68% 0 0);
 
-  --color-theme-neutral: oklch(96.12% 0 0);
-  --color-theme-green: oklch(84.59% 0.212 151.98);
-  --color-theme-green-bg: oklch(41.71% 0.0701 151.98 / 70.59%);
+  --color-theme-neutral-100: oklch(96.12% 0 0);
 
-  /* --color-primary-border: #282828; */
-  /* --color-text: #eeeeee; */ /* --color-secondary: #6c6d71; */
-  /* --container-sm: 640px;
-  --container-md: 768px;
-  --container-lg: 1024px;
-  --container-xl: 1024px;
-  --container-2xl: 1024px; */
+  --color-theme-neutral-900: oklch(19.13% 0 0);
+
+  --color-theme-green: oklch(84.59% 0.212 151.98);
+  --color-theme-green-bg: oklch(41.71% 0.0701 151.98 / 70.59%); */
+
   --height-input-xs: 1.6rem;
   --height-input-sm: 2rem;
   --height-input-md: 2.5rem;
   --height-input-lg: 3rem;
   --height-icon: 1.2rem;
+
+  --spacing-margin: 2rem;
 }
 
 .debug {

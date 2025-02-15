@@ -23,14 +23,14 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={cn('text-text bg-background', fontSans.className)}>
+      <body className={cn('text-text-default bg-bg-default', fontSans.className)}>
         <GlobalStoreProvider>
           <Header className="h-16 px-6" />
 
           <div className="flex h-[calc(100vh-64px)] gap-2 px-2 pb-2">
             <SideNav className="w-90" />
 
-            <div className="bg-foreground w-full overflow-y-scroll rounded-lg">
+            <div className="bg-bg-subtle w-full overflow-y-scroll rounded-lg">
               <main>{children}</main>
             </div>
           </div>

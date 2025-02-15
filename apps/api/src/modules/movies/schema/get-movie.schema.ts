@@ -9,6 +9,7 @@ export const getMovieInput = z.object({
 });
 
 export const getMovieOutput = z.object({
+  movieId: z.number(),
   title: z.string(),
   posterPath: z.string(),
   releaseDate: z.string(),
