@@ -1,7 +1,9 @@
+import { hc } from 'hono/client';
 import { notFound } from 'next/navigation';
 
+import type { AppType } from '@filmlist/hono';
+
 import { MovieView } from '@/components/views/MovieView';
-import { trpc } from '@/lib/trpc';
 
 type Props = {
   params: Promise<{
@@ -17,7 +19,17 @@ export default async function MoviePage(props: Props) {
     notFound();
   }
 
-  const movie = await trpc.movies.movie.query({ movieId });
+  const client = hc<AppType>('http://localhost:8787');
+
+  const movie = await client.api.movie[':movieId']
+    .$get({
+      param: {
+        movieId: movieId.toString(),
+      },
+    })
+    .then(async (res) => {
+      return res.json();
+    });
 
   return <MovieView movie={movie} />;
 }

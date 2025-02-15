@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { trpc } from '@/lib/trpc';
 import { cn } from '@/lib/utils/cn';
 
-import { MoviePoster } from '../movie-list/MoviePoster';
+import { MoviePoster } from '../movie/MoviePoster';
 
 type MovieSearchResultProps = React.ComponentProps<'div'> & {
   movie: Awaited<ReturnType<typeof trpc.movies.search.query>>[number];
@@ -18,12 +18,7 @@ export const MovieSearchResult = ({ movie, className, ...props }: MovieSearchRes
       )}
       {...props}
     >
-      <MoviePoster
-        source="tmdb"
-        size="w92"
-        posterPath={movie.posterPath}
-        className="w-[30px] rounded-xs shadow-md"
-      />
+      <MoviePoster posterPath={movie.posterPath} className="w-[30px] rounded-xs shadow-md" />
       <div className="ml-3 flex flex-col">
         <div className="flex items-baseline">
           <Link href={`/film/${movie.id}`}>

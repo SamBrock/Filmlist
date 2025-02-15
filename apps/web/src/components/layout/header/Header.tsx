@@ -2,7 +2,6 @@ import Link from 'next/link';
 
 import { cn } from '@/lib/utils/cn';
 
-import { HeaderLink } from './HeaderLink';
 import { HeaderLogo } from './HeaderLogo';
 import { HeaderMovieSearch } from './HeaderMovieSearch';
 

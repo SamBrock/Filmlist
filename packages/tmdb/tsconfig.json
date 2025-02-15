@@ -1,9 +1,8 @@
 {
   "extends": "@filmlist/tsconfig/base.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src"
+    "outDir": "dist"
   },
-  "include": ["src"],
+  "include": ["schema-v3.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
