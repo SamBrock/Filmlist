@@ -22,7 +22,7 @@ export const MovieView = ({ movie }: MovieViewProps) => {
           <MovieBackdropImage className="w-full object-cover" backdropPath={movie.backdropPath} />
         </div>
 
-        <div className="from-bg-subtle absolute bottom-0 left-0 h-1/2 w-full bg-linear-to-t to-transparent" />
+        <div className="from-bg-subtle absolute -bottom-[2px] left-0 h-1/2 w-full bg-linear-to-t to-transparent" />
 
         <MovieViewGrid className="px-margin absolute bottom-0 left-1/2 container -translate-x-1/2 gap-8">
           <MoviePoster
@@ -52,7 +52,7 @@ export const MovieView = ({ movie }: MovieViewProps) => {
       <div className="px-margin container mx-auto mt-8 mb-[1000px]">
         <MovieViewGrid className="gap-8">
           <div>
-            <MovieActions className="rounded-lg drop-shadow-xl" />
+            <MovieActions className="rounded-lg" />
           </div>
           <div className="flex flex-col gap-4">
             <p className="text-text-subtle max-w-5/6 leading-7">{movie.overview}</p>

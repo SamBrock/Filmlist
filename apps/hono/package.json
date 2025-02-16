@@ -7,8 +7,8 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "dev": "wrangler dev src/index.ts",
-    "build": "wrangler dev src/index.ts",
+    "_dev": "wrangler dev src/index.ts",
+    "_build": "wrangler dev src/index.ts",
     "deploy": "wrangler deploy src/index.ts",
     "test": "vitest --run"
   },

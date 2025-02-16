@@ -10,8 +10,8 @@
     "./app.schemas": "./src/app.schemas.ts"
   },
   "scripts": {
-    "_build": "nest build",
-    "_dev": "nest start --watch",
+    "build": "nest build",
+    "dev": "nest start --watch",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
