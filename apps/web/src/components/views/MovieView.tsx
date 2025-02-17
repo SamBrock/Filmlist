@@ -1,4 +1,4 @@
-import { Movie } from '@filmlist/api/app.schemas';
+import { Movie } from '@repo/api/app.schemas';
 
 import { cn } from '@/lib/utils/cn';
 import { runtimeMinutesToHours } from '@/lib/utils/runtime';

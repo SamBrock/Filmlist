@@ -1,5 +1,5 @@
 {
-  "name": "@filmlist/config",
+  "name": "@repo/config",
   "version": "0.0.0",
   "type": "commonjs",
   "private": true,
@@ -12,7 +12,6 @@
     "@eslint/js": "^9.17.0",
     "@ianvs/prettier-plugin-sort-imports": "4.0.0-alpha.0",
     "@next/eslint-plugin-next": "^15.1.0",
-    "@trivago/prettier-plugin-sort-imports": "^5.2.0",
     "@typescript-eslint/eslint-plugin": "^8.15.0",
     "@typescript-eslint/parser": "^8.15.0",
     "eslint": "^9.15.0",

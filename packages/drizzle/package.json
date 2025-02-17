@@ -1,0 +1,23 @@
+{
+  "name": "@repo/drizzle",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.39.3",
+    "pg": "^8.13.3"
+  },
+  "devDependencies": {
+    "@repo/tsconfig": "*",
+    "@types/pg": "^8.11.11",
+    "drizzle-kit": "^0.30.4",
+    "tsx": "^4.19.2"
+  },
+  "main": "./src/index.ts",
+  "types": "./src/index.d.ts"
+}

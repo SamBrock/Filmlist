@@ -1,5 +1,5 @@
 {
-  "name": "@filmlist/hono",
+  "name": "@repo/api",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -7,14 +7,15 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "_dev": "wrangler dev src/index.ts",
-    "_build": "wrangler dev src/index.ts",
+    "dev": "wrangler dev src/index.ts",
+    "build": "wrangler dev src/index.ts",
     "deploy": "wrangler deploy src/index.ts",
     "test": "vitest --run"
   },
   "license": "MIT",
   "dependencies": {
-    "@filmlist/tmdb": "*",
+    "@repo/drizzle": "*",
+    "@repo/tmdb": "*",
     "hono": "^4.6.20"
   },
   "devDependencies": {
