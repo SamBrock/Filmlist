@@ -1,0 +1,110 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  username String?
+  password String?
+
+  watchlist     Watchlist[]
+  watchedMovies WatchedMovie[]
+  ratedMovies   RatedMovie[]
+  likedMovies   LikedMovie[]
+  lists         List[]
+
+  createdAt DateTime @default(now())
+}
+
+model Movie {
+  id           Int      @id
+  title        String
+  backdropPath String
+  posterPath   String
+  releaseDate  DateTime
+
+  watchlists Watchlist[]
+  watchedBy  WatchedMovie[]
+  ratedBy    RatedMovie[]
+  likedBy    LikedMovie[]
+  lists      List[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Watchlist {
+  userId  Int   @unique
+  user    User  @relation(fields: [userId], references: [id])
+  movieId Int
+  movie   Movie @relation(fields: [movieId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@id([userId, movieId])
+}
+
+model WatchedMovie {
+  userId  Int
+  user    User  @relation(fields: [userId], references: [id])
+  movieId Int
+  movie   Movie @relation(fields: [movieId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, movieId])
+}
+
+model LikedMovie {
+  userId  Int
+  user    User  @relation(fields: [userId], references: [id])
+  movieId Int
+  movie   Movie @relation(fields: [movieId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, movieId])
+}
+
+model RatedMovie {
+  id      Int   @id @default(autoincrement())
+  rating  Int
+  userId  Int
+  user    User  @relation(fields: [userId], references: [id])
+  movieId Int
+  movie   Movie @relation(fields: [movieId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model List {
+  id     Int     @id @default(autoincrement())
+  name   String
+  userId Int
+  user   User    @relation(fields: [userId], references: [id])
+  movies Movie[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// model Log {
+//   id        Int      @id @default(autoincrement())
+//   rating    Int      @default(0)
+//   liked     Boolean  @default(false)
+//   movie     Movie?   @relation(fields: [movieId], references: [id])
+//   movieId   Int?
+//   user      User     @relation(fields: [userId], references: [id])
+//   userId    Int
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
