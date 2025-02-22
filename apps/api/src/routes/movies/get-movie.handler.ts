@@ -1,7 +1,26 @@
-import * as tmdb from '@repo/tmdb';
-import { Hono } from 'hono';
+import { RouteHandler, z } from '@hono/zod-openapi';
 
-const app = new Hono().get('/:movieId', async (c) => {
+import * as tmdb from '@repo/tmdb';
+import { GetMovieRoute } from './movies.routes';
+
+export type Movie = z.infer<typeof getMovieSchema>;
+
+export const getMovieSchema = z.object({
+  movieId: z.number(),
+  title: z.string(),
+  releaseDate: z.string(),
+  posterPath: z.string(),
+  backdropPath: z.string(),
+  overview: z.string(),
+  runtime: z.number(),
+  tagline: z.string(),
+  voteAverage: z.number().optional(),
+  voteCount: z.number().optional(),
+  directors: z.array(z.string()),
+  genres: z.array(z.string()).optional(),
+});
+
+export const getMovie: RouteHandler<GetMovieRoute> = async (c) => {
   const { movieId } = c.req.param();
 
   const { data } = await tmdb.client.GET('/3/movie/{movie_id}', {
@@ -16,6 +35,7 @@ const app = new Hono().get('/:movieId', async (c) => {
   if (!data) {
     throw new Error('');
   }
+
   if ([data.poster_path, data.backdrop_path, data.release_date].includes(undefined)) {
     throw new Error('');
   }
@@ -42,6 +62,4 @@ const app = new Hono().get('/:movieId', async (c) => {
       : [],
     genres: data.genres ? data.genres?.map((genre) => genre.name as string) : [],
   });
-});
-
-export default app;
+};

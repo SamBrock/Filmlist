@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation';
-import { hc } from 'hono/client';
 
 import type { AppType } from '@repo/api';
 import { MovieView } from '@/components/views/MovieView';
@@ -18,11 +17,11 @@ export default async function MoviePage(props: Props) {
     notFound();
   }
 
-  const client = hc<AppType>('http://localhost:8787');
+  // const client = hc<AppType>('http://localhost:8787');
 
-  const movie = await client.api.movie[':movieId']
-    .$get({ param: { movieId: movieId.toString() } })
-    .then((res) => res.json());
+  // const movie = await client.api.movie[':movieId']
+  //   .$get({ param: { movieId: movieId.toString() } })
+  //   .then((res) => res.json());
 
   return <MovieView movie={movie} />;
 }

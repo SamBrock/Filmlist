@@ -15,7 +15,6 @@ module.exports = {
   importOrder: [
     '^react$',
     '^next$|^next\/.*$',
-    '^hono$|^hono\/.*$',
     '^drizzle$|^drizzle\/.*$',
     '<THIRD_PARTY_MODULES>',
     '',

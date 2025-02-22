@@ -4,19 +4,23 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/app.ts"
   },
   "scripts": {
-    "dev": "wrangler dev src/index.ts",
-    "build": "wrangler dev src/index.ts",
-    "deploy": "wrangler deploy src/index.ts",
+    "dev": "wrangler dev src/app.ts",
+    "build": "wrangler dev src/app.ts",
+    "deploy": "wrangler deploy src/app.ts",
     "test": "vitest --run"
   },
   "license": "MIT",
   "dependencies": {
+    "@hono/zod-openapi": "^0.18.4",
     "@repo/drizzle": "*",
     "@repo/tmdb": "*",
-    "hono": "^4.6.20"
+    "hono": "^4.6.20",
+    "hono-pino": "^0.7.2",
+    "http-status-codes": "1.4.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240405.0",
