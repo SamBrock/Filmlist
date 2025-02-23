@@ -1,7 +1,9 @@
 {
-  "name": "@repo/drizzle",
-  "version": "0.0.0",
+  "name": "@filmlist/drizzle",
   "private": true,
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.d.ts",
   "scripts": {
     "generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
@@ -13,11 +15,9 @@
     "pg": "^8.13.3"
   },
   "devDependencies": {
-    "@repo/tsconfig": "*",
+    "@filmlist/tsconfig": "*",
     "@types/pg": "^8.11.11",
     "drizzle-kit": "^0.30.4",
     "tsx": "^4.19.2"
-  },
-  "main": "./src/index.ts",
-  "types": "./src/index.d.ts"
+  }
 }

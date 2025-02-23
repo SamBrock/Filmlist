@@ -1,4 +1,4 @@
-// import { AppRouterType } from '@repo/api/app.router';
+// import { AppRouterType } from '@filmlist/api/app.router';
 // import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 
 // export const trpc = createTRPCProxyClient<AppRouterType>({

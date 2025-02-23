@@ -1,14 +1,10 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 
-import movies from './routes/movies/movies.index';
+import movies from './routes/movies/movies.routes';
 
-const app = new OpenAPIHono();
+const app = new OpenAPIHono().basePath('/api');
 
-const routes = [movies] as const;
-
-routes.forEach((route) => {
-  app.route('/', route);
-});
+app.route('/', movies);
 
 app.doc('/doc', {
   openapi: '3.0.0',
@@ -17,6 +13,8 @@ app.doc('/doc', {
     title: 'My API',
   },
 });
+
+const routes = [movies] as const;
 
 export type AppType = (typeof routes)[number];
 

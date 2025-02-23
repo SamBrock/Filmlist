@@ -1,4 +1,4 @@
-// import { SearchMoviesInput } from '@repo/api/app.schemas';
+// import { SearchMoviesInput } from '@filmlist/api/app.schemas';
 // import useSWR from 'swr';
 
 // import { trpc } from '@/lib/trpc';

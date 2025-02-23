@@ -1,4 +1,4 @@
-import { type Movie } from '@repo/api/app.schemas';
+import { type Movie } from '@filmlist/api/app.schemas';
 
 import { cn } from '@/lib/utils/cn';
 

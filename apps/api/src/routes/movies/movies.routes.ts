@@ -1,14 +1,30 @@
-import { createRoute } from '@hono/zod-openapi';
+import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi';
 
-import { jsonContent, StatusCodes } from '../../lib/utils';
-import { getMovieSchema } from './get-movie.handler';
+import { jsonContent } from '@filmlist/lib/hono';
+import { StatusCodes } from '@filmlist/lib/utils';
 
-export type GetMovieRoute = typeof getMovie;
+import { getMovie, getMovieResponseSchema } from './get-movie.handler';
 
-export const getMovie = createRoute({
-  path: '/movie/{movieId}',
-  method: 'get',
-  responses: {
-    [StatusCodes.OK]: jsonContent(getMovieSchema, 'List of movies'),
-  },
-});
+const router = new OpenAPIHono();
+
+router.openapi(
+  createRoute({
+    path: '/getMovie/{movieId}',
+    method: 'get',
+    request: {
+      params: z.object({
+        movieId: z.string(),
+      }),
+    },
+    responses: {
+      [StatusCodes.OK]: jsonContent(getMovieResponseSchema, 'Get movie by TMDB ID'),
+    },
+  }),
+  async (c) => {
+    const { movieId } = c.req.param();
+    const data = await getMovie(movieId);
+    return c.json(data);
+  }
+);
+
+export default router;

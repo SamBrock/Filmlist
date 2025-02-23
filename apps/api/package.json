@@ -1,5 +1,5 @@
 {
-  "name": "@repo/api",
+  "name": "@filmlist/api",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -15,8 +15,9 @@
   "license": "MIT",
   "dependencies": {
     "@hono/zod-openapi": "^0.18.4",
-    "@repo/drizzle": "*",
-    "@repo/tmdb": "*",
+    "@filmlist/drizzle": "*",
+    "@filmlist/lib": "*",
+    "@filmlist/tmdb": "*",
     "hono": "^4.6.20",
     "hono-pino": "^0.7.2",
     "http-status-codes": "1.4.0",

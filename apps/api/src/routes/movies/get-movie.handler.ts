@@ -1,11 +1,11 @@
-import { RouteHandler, z } from '@hono/zod-openapi';
+import { z } from 'zod';
 
-import * as tmdb from '@repo/tmdb';
-import { GetMovieRoute } from './movies.routes';
+import { tmdb, type TMDBOperations } from '@filmlist/tmdb';
 
-export type Movie = z.infer<typeof getMovieSchema>;
+export type Movie = z.infer<typeof getMovieResponseSchema>;
+export type GetMovieResponse = z.output<typeof getMovieResponseSchema>;
 
-export const getMovieSchema = z.object({
+export const getMovieResponseSchema = z.object({
   movieId: z.number(),
   title: z.string(),
   releaseDate: z.string(),
@@ -20,9 +20,7 @@ export const getMovieSchema = z.object({
   genres: z.array(z.string()).optional(),
 });
 
-export const getMovie: RouteHandler<GetMovieRoute> = async (c) => {
-  const { movieId } = c.req.param();
-
+export const getMovie = async (movieId: string): Promise<GetMovieResponse> => {
   const { data } = await tmdb.client.GET('/3/movie/{movie_id}', {
     params: {
       path: { movie_id: +movieId },
@@ -42,11 +40,11 @@ export const getMovie: RouteHandler<GetMovieRoute> = async (c) => {
 
   const credits = (
     data as unknown as {
-      credits: tmdb.TMDBOperations['movie-credits']['responses']['200']['content']['application/json']; // TODO
+      credits: TMDBOperations['movie-credits']['responses']['200']['content']['application/json']; // TODO
     }
   ).credits;
 
-  return c.json({
+  return {
     movieId: data.id as number,
     title: data.title as string,
     posterPath: data.poster_path as string,
@@ -61,5 +59,5 @@ export const getMovie: RouteHandler<GetMovieRoute> = async (c) => {
       ? credits.crew.filter((person) => person.job === 'Director').map((person) => person.name as string)
       : [],
     genres: data.genres ? data.genres?.map((genre) => genre.name as string) : [],
-  });
+  };
 };

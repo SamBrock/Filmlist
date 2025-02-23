@@ -1,4 +1,4 @@
-import { config } from '@repo/config/eslint-preset';
+import { config } from '@filmlist/config/eslint-preset';
 
 export default {
   ...config,
