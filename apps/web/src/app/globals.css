@@ -9,25 +9,29 @@
   --color-text-subtle: oklch(84% 0 0);
   --color-text-muted: oklch(74% 0 0);
 
-  /* --color-background: oklch(19.13% 0 0);
-  --color-foreground: oklch(20.9% 0 0);
+  --color-green-default: oklch(85.28% 0.2261 142.76);
+  --color-green-subtle: oklch(85.28% 0.2261 142.76 / 70.59%);
+  --color-green-muted: oklch(85.28% 0.2261 142.76 / 50%);
 
-  --color-text: oklch(94% 0 0);
-  --color-text-secondary: oklch(70% 0 0);
-  --color-border: oklch(27.68% 0 0);
+  --color-blue-default: oklch(85.71% 0.1102 204.76);
+  --color-blue-subtle: oklch(85.71% 0.1102 204.76 / 70.59%);
+  --color-blue-muted: oklch(85.71% 0.1102 204.76 / 50%);
 
-  --color-theme-neutral-100: oklch(96.12% 0 0);
-
-  --color-theme-neutral-900: oklch(19.13% 0 0);
-
-  --color-theme-green: oklch(84.59% 0.212 151.98);
-  --color-theme-green-bg: oklch(41.71% 0.0701 151.98 / 70.59%); */
+  --color-orange-default: oklch(69.59% 0.1814 50.51);
+  --color-orange-subtle: oklch(69.59% 0.1814 50.51 / 70.59%);
+  --color-orange-muted: oklch(69.59% 0.1814 50.51 / 50%);
 
   --height-input-xs: 1.6rem;
   --height-input-sm: 2rem;
   --height-input-md: 2.5rem;
   --height-input-lg: 3rem;
-  --height-icon: 1.2rem;
+
+  --height-icon-lg: 1.8rem;
+  --height-icon-md: 1.5rem;
+  --height-icon-sm: 1.3rem;
+  --width-icon-lg: 1.8rem;
+  --width-icon-md: 1.5rem;
+  --width-icon-sm: 1.3rem;
 
   --spacing-margin: 2rem;
 }

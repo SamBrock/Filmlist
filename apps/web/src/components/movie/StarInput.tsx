@@ -39,7 +39,7 @@ export const StarInput = ({ initialRating }: MovieStarsInputProps) => {
         }}
       >
         {[...Array(MAX_RATING).keys()].map((i) => (
-          <Star key={i} className="fill-theme-green" />
+          <Star key={i} className="fill-green-default" />
         ))}
       </div>
     </div>
@@ -47,5 +47,5 @@ export const StarInput = ({ initialRating }: MovieStarsInputProps) => {
 };
 
 const Star = ({ className, ...props }: LucideProps) => {
-  return <Icon className={cn('size-[2.2rem] stroke-0', className)} {...props} name="star" />;
+  return <Icon className={cn('size-[2rem] stroke-0', className)} {...props} name="star" />;
 };

@@ -1,21 +1,19 @@
-import { OpenAPIHono } from '@hono/zod-openapi';
+import { serve } from '@hono/node-server';
+import { trpcServer } from '@hono/trpc-server';
+import { Hono } from 'hono';
+import { cors } from 'hono/cors';
 
-import movies from './routes/movies/movies.routes';
+import { appRouter } from './app.router';
 
-const app = new OpenAPIHono().basePath('/api');
+const app = new Hono();
 
-app.route('/', movies);
+app.use('/*', cors({ origin: 'http://localhost:3000' }));
+app.use('/trpc/*', trpcServer({ router: appRouter }));
 
-app.doc('/doc', {
-  openapi: '3.0.0',
-  info: {
-    version: '1.0.0',
-    title: 'My API',
-  },
+serve({
+  fetch: app.fetch,
+  port: 8787,
+  hostname: 'localhost',
 });
-
-const routes = [movies] as const;
-
-export type AppType = (typeof routes)[number];
 
 export default app;

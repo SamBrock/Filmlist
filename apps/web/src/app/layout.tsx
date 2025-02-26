@@ -8,6 +8,7 @@ import { GlobalStoreProvider } from '@/providers/GlobalStoreProvider';
 
 import './globals.css';
 
+
 export const metadata: Metadata = {
   title: 'filmlist',
 };

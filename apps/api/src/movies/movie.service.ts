@@ -1,29 +1,9 @@
-import { z } from 'zod';
-
 import { tmdb, type TMDBOperations } from '@filmlist/tmdb';
 
-export type Movie = z.infer<typeof getMovieResponseSchema>;
-export type GetMovieResponse = z.output<typeof getMovieResponseSchema>;
-
-export const getMovieResponseSchema = z.object({
-  movieId: z.number(),
-  title: z.string(),
-  releaseDate: z.string(),
-  posterPath: z.string(),
-  backdropPath: z.string(),
-  overview: z.string(),
-  runtime: z.number(),
-  tagline: z.string(),
-  voteAverage: z.number().optional(),
-  voteCount: z.number().optional(),
-  directors: z.array(z.string()),
-  genres: z.array(z.string()).optional(),
-});
-
-export const getMovie = async (movieId: string): Promise<GetMovieResponse> => {
+export const getMovie = async (movieId: number) => {
   const { data } = await tmdb.client.GET('/3/movie/{movie_id}', {
     params: {
-      path: { movie_id: +movieId },
+      path: { movie_id: movieId },
       query: {
         append_to_response: 'credits',
       },

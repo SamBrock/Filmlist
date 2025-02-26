@@ -15,22 +15,24 @@ import {
 } from 'lucide-react';
 
 const ICONS = {
-  search: Search,
-  plus: Plus,
-  library: Library,
-  listVideo: ListVideo,
-  eye: Eye,
   check: Check,
-  listPlus: ListPlus,
-  listCheck: ListCheck,
+  eye: Eye,
   heart: Heart,
-  pin: Pin,
-  star: Star,
   launch: ArrowUpRight,
+  library: Library,
+  listCheck: ListCheck,
+  listPlus: ListPlus,
+  listVideo: ListVideo,
+  pin: Pin,
+  plus: Plus,
+  search: Search,
+  star: Star,
 } as const;
 
+export type IconName = keyof typeof ICONS;
+
 type IconProps = LucideProps & {
-  name: keyof typeof ICONS;
+  name: IconName;
 };
 
 export const Icon = ({ name, ...props }: IconProps) => {

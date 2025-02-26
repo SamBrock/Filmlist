@@ -1,7 +1,9 @@
 import { relations } from 'drizzle-orm';
 import { integer, pgTable, varchar, date, timestamp } from 'drizzle-orm/pg-core';
 
-import { activity } from './activity.schema';
+import { likes } from './likes.schema';
+import { ratings } from './ratings.schema';
+import { watched } from './watched.schema';
 
 export const movies = pgTable('movies', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -19,5 +21,7 @@ export const movies = pgTable('movies', {
 });
 
 export const moviesRelations = relations(movies, ({ many }) => ({
-  activity: many(activity),
+  likes: many(likes),
+  ratings: many(ratings),
+  watched: many(watched),
 }));

@@ -1,16 +1,23 @@
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 
-import { activity } from './schema/activity.schema';
+import { likes } from './schema/likes.schema';
 import { movies } from './schema/movies.schema';
+import { ratings } from './schema/ratings.schema';
 import { users } from './schema/users.schema';
+import { watched } from './schema/watched.schema';
+import { watchlist } from './schema/watchlist.schema';
+
+export { users, movies, likes, ratings, watched, watchlist };
 
 export const db = drizzle({
   connection: process.env.DATABASE_URL!,
-  casing: 'snake_case',
   schema: {
     users,
     movies,
-    activity,
+    likes,
+    ratings,
+    watched,
+    watchlist,
   },
 });

@@ -7,7 +7,7 @@ export const DividerDot = ({ className, ...props }: DividerDotProps) => {
     <span
       className={cn('text-sm select-none', className)}
       {...props}
-      dangerouslySetInnerHTML={{ __html: '&middot;' }}
+      dangerouslySetInnerHTML={{ __html: '•' }}
     />
   );
 };

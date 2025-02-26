@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 
-import { api } from '@filmlist/lib/api';
-
+import { trpc } from '@/lib/trpc';
 import { MovieView } from '@/components/views/MovieView';
 
 type Props = {
@@ -18,13 +17,12 @@ export default async function MoviePage(props: Props) {
     notFound();
   }
 
-  const movie = await api.GET('/api/getMovie/{movieId}', {
-    params: {
-      path: { movieId: movieId.toString() },
-    },
-  });
+  const [movie, initialActivity] = await Promise.all([
+    trpc.movies.getMovie.query({ movieId }),
+    trpc.activity.getUserMovieActivity.query({ movieId, userId: 1 }),
+  ]);
 
-  return <MovieView movie={movie.data} />;
+  return <MovieView movie={movie} initialActivity={initialActivity} />;
 }
 
 // Popularity

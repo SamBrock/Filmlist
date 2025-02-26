@@ -1,7 +1,8 @@
 'use client';
 
-import type { Movie } from '@filmlist/api/app.schemas';
 import { createContext, useContext } from 'react';
+
+import type { Movie } from '@filmlist/api/app.types';
 
 type MovieContext = {
   movie: Movie;

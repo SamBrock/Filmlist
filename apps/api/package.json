@@ -2,22 +2,25 @@
   "name": "@filmlist/api",
   "version": "0.0.1",
   "private": true,
-  "type": "module",
   "exports": {
-    ".": "./src/app.ts"
+    "./app.router": "./src/app.router.ts",
+    "./app.types": "./src/app.types.ts"
   },
   "scripts": {
-    "dev": "wrangler dev src/app.ts",
-    "build": "wrangler dev src/app.ts",
-    "deploy": "wrangler deploy src/app.ts",
+    "dev": "tsx ./src/app.ts",
     "test": "vitest --run"
   },
   "license": "MIT",
   "dependencies": {
-    "@hono/zod-openapi": "^0.18.4",
     "@filmlist/drizzle": "*",
     "@filmlist/lib": "*",
     "@filmlist/tmdb": "*",
+    "@hono/node-server": "^1.13.8",
+    "@hono/trpc-server": "^0.3.4",
+    "@hono/zod-openapi": "^0.18.4",
+    "@trpc/server": "^10.45.2",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.39.3",
     "hono": "^4.6.20",
     "hono-pino": "^0.7.2",
     "http-status-codes": "1.4.0",
@@ -25,6 +28,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240405.0",
+    "tsx": "^4.19.3",
     "vitest": "^1.5.0",
     "wrangler": "^3.53.0"
   }
