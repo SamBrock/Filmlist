@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
 import { Albert_Sans } from 'next/font/google';
 
-import { Header } from '@/components/layout/header/Header';
-import { SideNav } from '@/components/sidenav/SideNav';
 import { cn } from '@/lib/utils/cn';
 import { GlobalStoreProvider } from '@/providers/GlobalStoreProvider';
-
+import { Header } from '@/components/layout/header/Header';
+import { SideNav } from '@/components/sidenav/SideNav';
 import './globals.css';
-
+import { MainWrapper } from '@/components/layout/MainWrapper';
 
 export const metadata: Metadata = {
   title: 'filmlist',
@@ -31,9 +30,9 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
           <div className="flex h-[calc(100vh-64px)] gap-2 px-2 pb-2">
             <SideNav className="w-90" />
 
-            <div className="bg-bg-subtle w-full overflow-y-scroll rounded-lg">
+            <MainWrapper>
               <main>{children}</main>
-            </div>
+            </MainWrapper>
           </div>
         </GlobalStoreProvider>
       </body>

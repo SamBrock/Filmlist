@@ -10,7 +10,7 @@ import {
 } from '../movie-actions/MovieActions';
 import { MovieActivityStoreSubscriber } from '../movie-actions/MovieActivityStoreSubscriber';
 import { MovieBackdropImage } from '../movie/MovieBackdrop';
-import { MovieBackdropSpring } from '../movie/MovieBackdropSpring';
+
 import { MoviePoster } from '../movie/MoviePoster';
 import { StarInput } from '../movie/StarInput';
 
@@ -24,15 +24,13 @@ export const MovieView = ({ movie, initialActivity }: MovieViewProps) => {
     <MovieProvider movie={movie}>
       <MovieActivityStoreProvider initialActivity={initialActivity}>
         <div className="relative">
-          <MovieBackdropSpring>
+          <div className="flex h-[calc(100vh-100px)] justify-center overflow-clip">
             <MovieBackdropImage className="w-full object-cover" backdropPath={movie.backdropPath} />
-          </MovieBackdropSpring>
-          {/* <div className="flex h-[calc(100vh-200px)] justify-center overflow-clip">
-        </div> */}
+          </div>
 
           <div className="from-bg-subtle absolute -bottom-[2px] left-0 h-full w-full bg-linear-to-t to-transparent" />
 
-          <MovieViewGrid className="px-margin absolute bottom-0 left-1/2 container -translate-x-1/2 gap-8">
+          <MovieViewGrid className="px-margin absolute bottom-0 left-1/2 container -translate-x-1/2 gap-8 mb-6">
             <MoviePoster
               className="self-end rounded-lg object-cover drop-shadow-xl"
               posterPath={movie.posterPath}
@@ -74,27 +72,27 @@ export const MovieView = ({ movie, initialActivity }: MovieViewProps) => {
         <div className="px-margin container mx-auto mt-8 mb-[1000px]">
           <MovieViewGrid className="gap-8">
             {/* <div className="bg-text-default/5 flex flex-col gap-2 rounded-lg p-3">
-            <div className="grid grid-cols-3 gap-2">
-              <MovieActionWatchButton />
-              <MovieActionLikeButton />
-              <MovieActionWatchlistButton />
-            </div>
-            <div className="flex justify-center rounded-md p-2">
-              <div className="w-min self-center">
-                <StarInput initialRating={0} />
+              <div className="grid grid-cols-3 gap-2">
+                <MovieActionWatchButton />
+                <MovieActionLikeButton />
+                <MovieActionWatchlistButton />
               </div>
-            </div>
-          </div> */}
+              <div className="flex justify-center rounded-md p-2">
+                <div className="w-min self-center">
+                  <StarInput initialRating={0} />
+                </div>
+              </div>
+            </div> */}
 
             {/* <div className="flex flex-col gap-4">
-            <p className="text-text-subtle max-w-5/6 leading-7">{movie.overview}</p>
+              <p className="text-text-subtle max-w-5/6 leading-7">{movie.overview}</p>
 
-            <div className="text-text-muted mt-4 flex items-center gap-2 text-sm">
-              {movie.genres?.map((genre) => <MovieGenre key={genre} genre={genre} />)}
-              <DividerDot />
-              <div className="font-medium">{runtimeMinutesToHours(movie.runtime)}</div>
-            </div>
-          </div> */}
+              <div className="text-text-muted mt-4 flex items-center gap-2 text-sm">
+                {movie.genres?.map((genre) => <MovieGenre key={genre} genre={genre} />)}
+                <DividerDot />
+                <div className="font-medium">{runtimeMinutesToHours(movie.runtime)}</div>
+              </div>
+            </div> */}
           </MovieViewGrid>
         </div>
 

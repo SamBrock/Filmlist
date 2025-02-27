@@ -39,3 +39,31 @@
 .debug {
   border: 1px red solid;
 }
+
+/* @keyframes scale-a-lil {
+  from {
+    scale: 0.5;
+  }
+}
+
+.img-test {
+  animation: scale-a-lil linear both;
+  animation-timeline: view();
+  animation-range: 25vh 75vh;
+} */
+
+@keyframes KF {
+  from {
+    transform: translateY(0);
+    /* scale: 1; */
+  }
+  to {
+    transform: translateY(100%);
+    /* scale: 1.05; */
+  }
+}
+
+.backdrop {
+  animation: KF linear;
+  animation-timeline: scroll();
+}

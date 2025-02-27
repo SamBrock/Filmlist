@@ -47,5 +47,5 @@ export const StarInput = ({ initialRating }: MovieStarsInputProps) => {
 };
 
 const Star = ({ className, ...props }: LucideProps) => {
-  return <Icon className={cn('size-[2rem] stroke-0', className)} {...props} name="star" />;
+  return <Icon className={cn('size-[2.1rem] stroke-0', className)} {...props} name="star" />;
 };
